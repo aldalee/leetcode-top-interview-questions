@@ -1,12 +1,14 @@
+// https://leetcode.cn/problems/two-sum/
+// 两数之和
 package main
 
 func twoSum(nums []int, target int) []int {
-	m := map[int]int{}
+	hash := map[int]int{}
 	for idx, num := range nums {
-		if p, ok := m[target-num]; ok {
-			return []int{p, idx}
+		if val, ok := hash[target-num]; ok {
+			return []int{val, idx}
 		}
-		m[num] = idx
+		hash[num] = idx
 	}
 	return []int{-1, -1}
 }
