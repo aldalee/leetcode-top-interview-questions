@@ -3,10 +3,10 @@
 package main
 
 func twoSum(nums []int, target int) []int {
-	hash := map[int]int{}
+	hash := map[int]int{} // <value, index>
 	for idx, num := range nums {
-		if val, ok := hash[target-num]; ok {
-			return []int{val, idx}
+		if v, ok := hash[target-num]; ok {
+			return []int{v, idx}
 		}
 		hash[num] = idx
 	}
