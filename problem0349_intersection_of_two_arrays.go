@@ -23,3 +23,22 @@ func addToSet(num []int, set map[int]struct{}) {
 		set[v] = struct{}{}
 	}
 }
+
+// 面试题: 求两个有序数组的交集
+func intersection2(a []int, b []int) (res []int) {
+	i, j := 0, 0
+	for i < len(a) && j < len(b) {
+		if a[i] == b[j] {
+			if res == nil || a[i] > res[len(res)-1] {
+				res = append(res, a[i])
+			}
+			i++
+			j++
+		} else if a[i] < b[j] {
+			i++
+		} else {
+			j++
+		}
+	}
+	return res
+}
