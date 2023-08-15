@@ -2,20 +2,21 @@
 // 两数相加
 package main
 
-func addTwoNumbers(l1 *ListNode, l2 *ListNode) (head *ListNode) {
+func addTwoNumbers(L1, L2 *ListNode) *ListNode {
+	var head *ListNode
 	var tail *ListNode
 	carry := 0
-	for l1 != nil || l2 != nil {
-		n1, n2 := 0, 0
-		if l1 != nil {
-			n1 = l1.Val
-			l1 = l1.Next
+	for L1 != nil || L2 != nil {
+		x, y := 0, 0
+		if L1 != nil {
+			x = L1.Val
+			L1 = L1.Next
 		}
-		if l2 != nil {
-			n2 = l2.Val
-			l2 = l2.Next
+		if L2 != nil {
+			y = L2.Val
+			L2 = L2.Next
 		}
-		sum := n1 + n2 + carry
+		sum := x + y + carry
 		sum, carry = sum%10, sum/10
 		if head == nil {
 			head = &ListNode{Val: sum}
@@ -28,5 +29,5 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) (head *ListNode) {
 	if carry > 0 {
 		tail.Next = &ListNode{Val: carry}
 	}
-	return
+	return head
 }
