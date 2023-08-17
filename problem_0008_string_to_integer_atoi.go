@@ -10,7 +10,7 @@ import (
 func myAtoi(s string) int {
 	s = extractNumbers(strings.TrimSpace(s))
 	str := []rune(s)
-	if !isValid(str) {
+	if !valid(str) {
 		return 0
 	}
 	return convertNumber(str)
@@ -32,7 +32,7 @@ func extractNumbers(s string) string {
 	return s[0:start] + s[start:end]
 }
 
-func isValid(s []rune) bool {
+func valid(s []rune) bool {
 	if len(s) == 0 {
 		return false
 	}
