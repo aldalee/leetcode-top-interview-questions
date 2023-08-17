@@ -3,23 +3,24 @@
 package main
 
 func isValid(s string) bool {
-	stack := make([]rune, 0)
-	for _, c := range s {
-		if c == '(' || c == '[' || c == '{' {
-			stack = append(stack, c)
-		} else {
+	if len(s)%2 != 0 {
+		return false
+	}
+	m := map[byte]byte{
+		')': '(',
+		']': '[',
+		'}': '{',
+	}
+	stack := make([]byte, 0)
+	for i := range s {
+		if m[s[i]] > 0 {
 			n := len(stack)
-			if n == 0 {
+			if n == 0 || stack[n-1] != m[s[i]] {
 				return false
 			}
-			top := stack[n-1]
-			if (top == '(' && c == ')') ||
-				(top == '[' && c == ']') ||
-				(top == '{' && c == '}') {
-				stack = stack[:n-1]
-			} else {
-				return false
-			}
+			stack = stack[:n-1]
+		} else {
+			stack = append(stack, s[i])
 		}
 	}
 	return len(stack) == 0
