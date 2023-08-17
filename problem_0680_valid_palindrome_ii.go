@@ -1,5 +1,5 @@
 // https://leetcode.cn/problems/valid-palindrome-ii/
-// 验证回文串 II
+// 验证回文串II
 package main
 
 func validPalindrome(s string) bool {
