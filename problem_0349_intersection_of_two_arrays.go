@@ -2,7 +2,7 @@
 // 两个数组的交集
 package main
 
-func intersection(nums1 []int, nums2 []int) []int {
+func intersection(nums1, nums2 []int) []int {
 	set := map[int]struct{}{}
 	res := map[int]struct{}{}
 	if len(nums1) > len(nums2) {
@@ -28,7 +28,7 @@ func convert(set map[int]struct{}) []int {
 }
 
 // 面试题: 求两个有序数组的交集
-func intersection2(a []int, b []int) (res []int) {
+func intersectionOfTwoOrderedArrays(a, b []int) (res []int) {
 	i, j := 0, 0
 	for i < len(a) && j < len(b) {
 		if a[i] == b[j] {
