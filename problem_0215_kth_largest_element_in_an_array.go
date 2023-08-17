@@ -1,6 +1,5 @@
 // https://leetcode.cn/problems/kth-largest-element-in-an-array/
 // 数组中的第K个最大元素
-// 要求时间复杂度O(n)
 package main
 
 import (
@@ -17,7 +16,7 @@ func quickSelect(arr []int, l, r, idx int) int {
 	if l == r {
 		return arr[l]
 	}
-	rand.Seed(time.Now().UnixNano())
+	rand.New(rand.NewSource(time.Now().UnixNano()))
 	pivot := arr[l+rand.Intn(r-l+1)]
 	L, R := partition(arr, l, r, pivot)
 	if idx < L {
