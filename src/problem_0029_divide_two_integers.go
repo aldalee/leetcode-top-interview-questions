@@ -85,3 +85,12 @@ func abs(n int) int {
 	}
 	return n
 }
+
+func printBinary(n int) string {
+	res := make([]byte, 0)
+	for i := 31; i >= 0; i-- {
+		bit := (n >> i) & 1
+		res = append(res, byte('0'+bit))
+	}
+	return string(res)
+}
