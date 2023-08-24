@@ -10,7 +10,7 @@ func firstMissingPositive(nums []int) int {
 			l++
 		} else if nums[l] <= l || nums[l] > r || nums[l] == nums[nums[l]-1] {
 			r--
-			nums[l] = nums[r]
+			swap(nums, l, r)
 		} else {
 			swap(nums, l, nums[l]-1)
 		}
