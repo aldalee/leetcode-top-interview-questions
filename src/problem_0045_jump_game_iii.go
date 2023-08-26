@@ -100,16 +100,16 @@ func main() {
 		n := len(nums)
 		start := rand.Intn(n)
 		end := rand.Intn(n)
-		minJumpTimes := minJumpTimes(nums, n, start, end)
-		dp := dp(nums, n, start, end)
-		if minJumpTimes != dp {
+		expected := minJumpTimes(nums, n, start, end)
+		output := dp(nums, n, start, end)
+		if expected != output {
 			fmt.Println("Wrong Answer!")
 			fmt.Println("nums =", nums)
 			fmt.Println("n =", n)
 			fmt.Println("start =", start)
 			fmt.Println("end =", end)
-			fmt.Println("Expected =", dp)
-			fmt.Println("Output =", minJumpTimes)
+			fmt.Println("Expected =", expected)
+			fmt.Println("Output =", output)
 			ok = false
 			break
 		}
