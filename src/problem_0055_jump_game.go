@@ -8,9 +8,6 @@ func canJump(nums []int) bool {
 		if i > maxJump {
 			return false
 		}
-		if maxJump > len(nums) {
-			return true
-		}
 		maxJump = max(maxJump, i+nums[i])
 	}
 	return true
