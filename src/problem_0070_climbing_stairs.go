@@ -4,8 +4,8 @@ package main
 
 func climbStairs(n int) int {
 	M := [][]int{{1, 1}, {1, 0}}
-	res := matrixPower(M, n)
-	return res[0][0]
+	res := matrixPower(M, n-1)
+	return res[0][1]*2 + res[1][1]
 }
 
 func matrixPower(matrix [][]int, n int) [][]int {
