@@ -2,25 +2,26 @@
 // 二叉树的层序遍历
 package main
 
+import "container/list"
+
 func levelOrder(root *TreeNode) (ans [][]int) {
 	if root == nil {
 		return
 	}
-	queue := []*TreeNode{root}
-	for len(queue) > 0 {
-		size := len(queue)
-		level := make([]int, size)
-		for i := 0; i < size; i++ {
-			cur := queue[i]
-			level[i] = cur.Val
+	queue := list.New()
+	queue.PushBack(root)
+	for queue.Len() > 0 {
+		var level []int
+		for i := queue.Len(); i > 0; i-- {
+			cur := queue.Remove(queue.Front()).(*TreeNode)
+			level = append(level, cur.Val)
 			if cur.Left != nil {
-				queue = append(queue, cur.Left)
+				queue.PushBack(cur.Left)
 			}
 			if cur.Right != nil {
-				queue = append(queue, cur.Right)
+				queue.PushBack(cur.Right)
 			}
 		}
-		queue = queue[size:]
 		ans = append(ans, level)
 	}
 	return
