@@ -3,7 +3,7 @@
 package main
 
 func isSymmetric(root *TreeNode) bool {
-	return check(root.Left, root.Right)
+	return check(root, root)
 }
 
 func check(p, q *TreeNode) bool {
@@ -13,5 +13,7 @@ func check(p, q *TreeNode) bool {
 	if p == nil || q == nil {
 		return false
 	}
-	return p.Val == q.Val && check(p.Left, q.Right) && check(p.Right, q.Left)
+	return p.Val == q.Val && // validate the value
+		check(p.Left, q.Right) && // validate left subtree
+		check(p.Right, q.Left) // validate right subtree
 }
