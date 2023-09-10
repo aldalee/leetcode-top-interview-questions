@@ -2,6 +2,15 @@
 // 填充每个节点的下一个右侧节点指针
 package main
 
+/**
+ * Definition for a Node.
+ * type Node struct {
+ *		Val    int
+ *		Left   *Node
+ *		Right  *Node
+ *		Next   *Node
+ *	}
+ */
 func connect(root *Node) *Node {
 	if root == nil {
 		return nil
