@@ -23,23 +23,19 @@ func wordBreak2(s string, wordDict []string) []string {
 	var (
 		dfs  func(idx int)
 		res  []string
-		path strings.Builder
+		path []string
 	)
 	dfs = func(start int) {
 		if start == n {
-			res = append(res, strings.TrimSpace(path.String()))
+			res = append(res, strings.Join(path, " "))
 			return
 		}
 		for end := start + 1; end <= n; end++ {
 			prefix := s[start:end]
 			if dict[prefix] && dp[end] {
-				size := path.Len()
-				path.WriteString(prefix)
-				path.WriteByte(' ')
+				path = append(path, prefix)
 				dfs(end)
-				str := path.String()[:size]
-				path.Reset()
-				path.WriteString(str)
+				path = path[:len(path)-1]
 			}
 		}
 	}
