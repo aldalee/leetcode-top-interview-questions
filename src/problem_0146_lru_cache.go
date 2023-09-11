@@ -72,7 +72,7 @@ func (l *DoublyLinkedList) addToTail(node *DNode) {
 }
 
 func (l *DoublyLinkedList) moveToTail(node *DNode) {
-	l.removeDLinkedNode(node)
+	l.removeDNode(node)
 	l.addToTail(node)
 }
 
@@ -81,11 +81,11 @@ func (l *DoublyLinkedList) removeHead() *DNode {
 	if res == l.tail {
 		return nil
 	}
-	l.removeDLinkedNode(res)
+	l.removeDNode(res)
 	return res
 }
 
-func (l *DoublyLinkedList) removeDLinkedNode(node *DNode) {
+func (l *DoublyLinkedList) removeDNode(node *DNode) {
 	node.prev.next = node.next
 	node.next.prev = node.prev
 }
