@@ -49,10 +49,3 @@ func change(str string) []byte {
 	s[k] = '#'
 	return s
 }
-
-func min(x, y int) int {
-	if x > y {
-		return y
-	}
-	return x
-}
