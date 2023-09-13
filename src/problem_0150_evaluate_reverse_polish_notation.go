@@ -2,38 +2,32 @@
 // 逆波兰表达式求值
 package main
 
-import (
-	"github.com/emirpasic/gods/stacks/linkedliststack"
-	"strconv"
-)
+import "strconv"
 
 func evalRPN(tokens []string) int {
-	stack := linkedliststack.New()
+	var stack []int
+	var compute = func(op string) {
+		n := len(stack)
+		y, x := stack[n-1], stack[n-2]
+		stack = stack[:n-2]
+		switch op {
+		case "+":
+			stack = append(stack, x+y)
+		case "-":
+			stack = append(stack, x-y)
+		case "*":
+			stack = append(stack, x*y)
+		case "/":
+			stack = append(stack, x/y)
+		}
+	}
 	for _, token := range tokens {
 		num, err := strconv.Atoi(token)
 		if err != nil {
-			compute(stack, token)
+			compute(token)
 		} else {
-			stack.Push(num)
+			stack = append(stack, num)
 		}
 	}
-	v, _ := stack.Pop()
-	return v.(int)
-}
-
-func compute(stack *linkedliststack.Stack, op string) {
-	y, _ := stack.Pop()
-	x, _ := stack.Pop()
-	ans := 0
-	switch op {
-	case "+":
-		ans = x.(int) + y.(int)
-	case "-":
-		ans = x.(int) - y.(int)
-	case "*":
-		ans = x.(int) * y.(int)
-	case "/":
-		ans = x.(int) / y.(int)
-	}
-	stack.Push(ans)
+	return stack[0]
 }
