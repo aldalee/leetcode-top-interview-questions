@@ -3,11 +3,9 @@
 package main
 
 func titleToNumber(columnTitle string) (num int) {
-	n, pow := len(columnTitle), 1
-	for i := n - 1; i >= 0; i-- {
+	for i := 0; i < len(columnTitle); i++ {
 		k := columnTitle[i] - 'A' + 1
-		num += int(k) * pow
-		pow *= 26
+		num = num*26 + int(k)
 	}
 	return
 }
