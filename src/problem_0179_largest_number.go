@@ -20,8 +20,9 @@ func largestNumber(nums []int) string {
 	for _, str := range strs {
 		ans.WriteString(str)
 	}
-	if ans.String()[0] == '0' {
+	res := ans.String()
+	if res[0] == '0' {
 		return "0"
 	}
-	return ans.String()
+	return res
 }
