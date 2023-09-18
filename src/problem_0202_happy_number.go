@@ -3,17 +3,17 @@
 package main
 
 func isHappy(n int) bool {
-	var step = func(n int) (sum int) {
+	var next = func(n int) (sum int) {
 		for n > 0 {
 			sum += (n % 10) * (n % 10)
 			n /= 10
 		}
 		return
 	}
-	slow, fast := n, step(n)
+	slow, fast := n, next(n)
 	for fast != 1 && slow != fast {
-		slow = step(slow)
-		fast = step(step(fast))
+		slow = next(slow)
+		fast = next(next(fast))
 	}
 	return fast == 1
 }
