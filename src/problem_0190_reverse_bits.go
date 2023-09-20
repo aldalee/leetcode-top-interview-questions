@@ -4,11 +4,11 @@ package main
 
 func reverseBits(n uint32) uint32 {
 	masks := []uint32{
-		0x0000ffff, // 00000000000000001111111111111111
-		0x00ff00ff, // 00000000111111110000000011111111
-		0x0f0f0f0f, // 00001111000011110000111100001111
-		0x33333333, // 00110011001100110011001100110011
-		0x55555555, // 01010101010101010101010101010101
+		0x0000ffff, // binary: 16 zeros,16 ones
+		0x00ff00ff, // binary:  8 zeros, 8 ones ...
+		0x0f0f0f0f, // binary:  4 zeros, 4 ones ...
+		0x33333333, // binary:  2 zeros, 2 ones ...
+		0x55555555, // binary:  1 zeros, 1 ones ...
 	}
 	shifts := []uint32{16, 8, 4, 2, 1}
 	for i, mask := range masks {
