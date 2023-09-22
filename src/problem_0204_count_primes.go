@@ -10,6 +10,7 @@ func countPrimes(n int) int {
 	count := n / 2 // exclude all even numbers.
 	for i := 3; i*i < n; i += 2 {
 		if !sieve[i] {
+			// verify all odd factors.
 			for j := i * i; j < n; j += 2 * i {
 				if !sieve[j] {
 					count--
