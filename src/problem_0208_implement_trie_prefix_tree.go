@@ -7,7 +7,7 @@ type Trie struct {
 	end   bool
 }
 
-func Constructor3() Trie {
+func Constructor() Trie {
 	return Trie{}
 }
 
