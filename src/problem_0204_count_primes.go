@@ -2,15 +2,21 @@
 // 计数质数
 package main
 
-func countPrimes(n int) (cnt int) {
+func countPrimes(n int) int {
+	if n < 3 {
+		return 0
+	}
 	sieve := make([]bool, n)
-	for i := 2; i < n; i++ {
+	count := n / 2 // exclude all even numbers.
+	for i := 3; i*i < n; i += 2 {
 		if !sieve[i] {
-			cnt++
-			for j := 2 * i; j < n; j += i {
-				sieve[j] = true
+			for j := i * i; j < n; j += 2 * i {
+				if !sieve[j] {
+					count--
+					sieve[j] = true
+				}
 			}
 		}
 	}
-	return
+	return count
 }
