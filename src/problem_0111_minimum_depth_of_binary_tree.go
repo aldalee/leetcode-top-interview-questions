@@ -20,21 +20,21 @@ func minDepth(root *TreeNode) int {
 			cur = cur.Right
 		} else {
 			count := 1
-			prev := cur.Left
-			for prev.Right != nil && prev.Right != cur {
+			rightmost := cur.Left
+			for rightmost.Right != nil && rightmost.Right != cur {
 				count++
-				prev = prev.Right
+				rightmost = rightmost.Right
 			}
-			if prev.Right == nil { // first arrived
+			if rightmost.Right == nil { // first arrived
 				height++
-				prev.Right = cur
+				rightmost.Right = cur
 				cur = cur.Left
 			} else { // second arrived
-				if prev.Left == nil {
+				if rightmost.Left == nil {
 					res = min(height, res)
 				}
 				height -= count
-				prev.Right = nil
+				rightmost.Right = nil
 				cur = cur.Right
 			}
 		}
