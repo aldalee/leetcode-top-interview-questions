@@ -5,8 +5,11 @@ package main
 func preorderTraversal(root *TreeNode) (res []int) {
 	cur := root
 	for cur != nil {
-		mostRight := cur.Left
-		if mostRight != nil {
+		if cur.Left == nil {
+			res = append(res, cur.Val)
+			cur = cur.Right
+		} else {
+			mostRight := cur.Left
 			for mostRight.Right != nil && mostRight.Right != cur {
 				mostRight = mostRight.Right
 			}
@@ -14,14 +17,11 @@ func preorderTraversal(root *TreeNode) (res []int) {
 				mostRight.Right = cur
 				res = append(res, cur.Val)
 				cur = cur.Left
-				continue
 			} else {
 				mostRight.Right = nil
+				cur = cur.Right
 			}
-		} else {
-			res = append(res, cur.Val)
 		}
-		cur = cur.Right
 	}
 	return
 }
