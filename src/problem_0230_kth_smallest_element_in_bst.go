@@ -5,17 +5,17 @@ package main
 func kthSmallest(root *TreeNode, k int) int {
 	cur := root
 	for cur != nil {
-		mostRight := cur.Left
-		if mostRight != nil {
-			for mostRight.Right != nil && mostRight.Right != cur {
-				mostRight = mostRight.Right
+		rightmost := cur.Left
+		if rightmost != nil {
+			for rightmost.Right != nil && rightmost.Right != cur {
+				rightmost = rightmost.Right
 			}
-			if mostRight.Right == nil {
-				mostRight.Right = cur
+			if rightmost.Right == nil {
+				rightmost.Right = cur
 				cur = cur.Left
 				continue
 			} else {
-				mostRight.Right = nil
+				rightmost.Right = nil
 			}
 		}
 		k--
