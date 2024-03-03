@@ -3,15 +3,10 @@
 package main
 
 func isValidBST(root *TreeNode) bool {
-	var (
-		cur       = root
-		mostRight *TreeNode
-		pre       *int
-		isBST     = true
-	)
-
+	var pre *int
+	cur := root
 	for cur != nil {
-		mostRight = cur.Left
+		mostRight := cur.Left
 		if mostRight != nil {
 			for mostRight.Right != nil && mostRight.Right != cur {
 				mostRight = mostRight.Right
@@ -21,14 +16,14 @@ func isValidBST(root *TreeNode) bool {
 				cur = cur.Left
 				continue
 			} else {
-				mostRight = nil
+				mostRight.Right = nil
 			}
 		}
 		if pre != nil && *pre >= cur.Val { // validate
-			isBST = false
+			return false
 		}
 		pre = &cur.Val
 		cur = cur.Right
 	}
-	return isBST
+	return true
 }
