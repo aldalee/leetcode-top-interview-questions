@@ -8,26 +8,26 @@ func postorderTraversal(root *TreeNode) (res []int) {
 		if cur.Left == nil {
 			cur = cur.Right
 		} else {
-			mostRight := cur.Left
-			for mostRight.Right != nil && mostRight.Right != cur {
-				mostRight = mostRight.Right
+			rightmost := cur.Left
+			for rightmost.Right != nil && rightmost.Right != cur {
+				rightmost = rightmost.Right
 			}
-			if mostRight.Right == nil {
-				mostRight.Right = cur
+			if rightmost.Right == nil {
+				rightmost.Right = cur
 				cur = cur.Left
 			} else {
-				mostRight.Right = nil
-				collectEdge(cur.Left, &res)
+				rightmost.Right = nil
+				collectRightmostEdge(cur.Left, &res)
 				cur = cur.Right
 			}
 		}
 	}
-	collectEdge(root, &res)
+	collectRightmostEdge(root, &res)
 	return
 }
 
 // collect right boundary
-func collectEdge(root *TreeNode, res *[]int) {
+func collectRightmostEdge(root *TreeNode, res *[]int) {
 	tail := reverseEdge(root)
 	for cur := tail; cur != nil; cur = cur.Right {
 		*res = append(*res, cur.Val)
