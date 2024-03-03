@@ -4,19 +4,19 @@ package main
 
 // based on morris traversal to inorder traversal
 func inorderTraversal(root *TreeNode) (res []int) {
-	cur, mostRight := root, root
+	cur := root
 	for cur != nil {
-		mostRight = cur.Left
-		if mostRight != nil {
-			for mostRight.Right != nil && mostRight.Right != cur {
-				mostRight = mostRight.Right
+		rightmost := cur.Left
+		if rightmost != nil {
+			for rightmost.Right != nil && rightmost.Right != cur {
+				rightmost = rightmost.Right
 			}
-			if mostRight.Right == nil {
-				mostRight.Right = cur
+			if rightmost.Right == nil {
+				rightmost.Right = cur
 				cur = cur.Left
 				continue
 			} else {
-				mostRight.Right = nil
+				rightmost.Right = nil
 			}
 		}
 		res = append(res, cur.Val)
