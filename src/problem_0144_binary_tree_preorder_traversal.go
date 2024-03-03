@@ -9,16 +9,16 @@ func preorderTraversal(root *TreeNode) (res []int) {
 			res = append(res, cur.Val)
 			cur = cur.Right
 		} else {
-			mostRight := cur.Left
-			for mostRight.Right != nil && mostRight.Right != cur {
-				mostRight = mostRight.Right
+			rightmost := cur.Left
+			for rightmost.Right != nil && rightmost.Right != cur {
+				rightmost = rightmost.Right
 			}
-			if mostRight.Right == nil {
-				mostRight.Right = cur
+			if rightmost.Right == nil {
+				rightmost.Right = cur
 				res = append(res, cur.Val)
 				cur = cur.Left
 			} else {
-				mostRight.Right = nil
+				rightmost.Right = nil
 				cur = cur.Right
 			}
 		}
