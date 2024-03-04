@@ -3,8 +3,7 @@
 package main
 
 func postorderTraversal(root *TreeNode) (res []int) {
-	cur := root
-	for cur != nil {
+	for cur := root; cur != nil; {
 		if cur.Left == nil {
 			cur = cur.Right
 		} else {
