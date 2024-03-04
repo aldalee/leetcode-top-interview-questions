@@ -8,14 +8,12 @@ func minDepth(root *TreeNode) int {
 	if root == nil {
 		return 0
 	}
-	cur := root
-	height := 0
-	res := math.MaxInt
-	for cur != nil {
+	minDepth, curDepth := math.MaxInt, 0
+	for cur := root; cur != nil; {
 		if cur.Left == nil { // only once arrived
-			height++
+			curDepth++
 			if cur.Right == nil { // the original leaf node
-				res = min(height, res)
+				minDepth = min(curDepth, minDepth)
 			}
 			cur = cur.Right
 		} else {
@@ -26,18 +24,18 @@ func minDepth(root *TreeNode) int {
 				rightmost = rightmost.Right
 			}
 			if rightmost.Right == nil { // first arrived
-				height++
+				curDepth++
 				rightmost.Right = cur
 				cur = cur.Left
 			} else { // second arrived
 				if rightmost.Left == nil {
-					res = min(height, res)
+					minDepth = min(curDepth, minDepth)
 				}
-				height -= count
+				curDepth -= count
 				rightmost.Right = nil
 				cur = cur.Right
 			}
 		}
 	}
-	return res
+	return minDepth
 }
