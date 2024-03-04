@@ -4,8 +4,7 @@ package main
 
 // based on morris traversal to inorder traversal
 func inorderTraversal(root *TreeNode) (res []int) {
-	cur := root
-	for cur != nil {
+	for cur := root; cur != nil; {
 		rightmost := cur.Left
 		if rightmost != nil {
 			for rightmost.Right != nil && rightmost.Right != cur {
