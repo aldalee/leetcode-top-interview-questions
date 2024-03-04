@@ -3,8 +3,7 @@
 package main
 
 func preorderTraversal(root *TreeNode) (res []int) {
-	cur := root
-	for cur != nil {
+	for cur := root; cur != nil; {
 		if cur.Left == nil {
 			res = append(res, cur.Val)
 			cur = cur.Right
