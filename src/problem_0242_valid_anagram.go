@@ -6,13 +6,12 @@ func isAnagram(s string, t string) bool {
 	if len(s) != len(t) {
 		return false
 	}
-	cnt := map[rune]int{}
+	cnt := [26]int{}
 	for _, c := range s {
-		cnt[c]++
+		cnt[c-'a']++
 	}
 	for _, c := range t {
-		cnt[c]--
-		if cnt[c] < 0 {
+		if cnt[c-'a']--; cnt[c-'a'] < 0 {
 			return false
 		}
 	}
