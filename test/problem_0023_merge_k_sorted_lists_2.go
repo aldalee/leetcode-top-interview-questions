@@ -1,4 +1,5 @@
 // 使用priorityqueue库函数，LeetCode运行
+// 我的发问帖：https://stackoverflow.com/questions/78158922/why-cannot-index-priorityqueue-newwith-value-of-type-funccomparator-utils-comp
 package main
 
 import pq "github.com/emirpasic/gods/queues/priorityqueue"
