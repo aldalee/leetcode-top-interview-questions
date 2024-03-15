@@ -4,7 +4,7 @@ package main
 
 func lengthOfLIS(nums []int) int {
 	var ends []int
-	// find the first position that >= num
+	// find the first position that greater than or equal num in ends
 	var binarySearchLeftIdx = func(num int) int {
 		idx := -1
 		for l, r := 0, len(ends)-1; l <= r; {
