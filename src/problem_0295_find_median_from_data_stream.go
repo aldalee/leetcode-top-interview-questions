@@ -16,31 +16,31 @@ func Constructor() MedianFinder {
 	}
 }
 
-func (this *MedianFinder) AddNum(num int) {
-	if this.maxHeap.Empty() {
-		this.maxHeap.Enqueue(num)
-	} else if top, _ := this.maxHeap.Peek(); top >= num {
-		this.maxHeap.Enqueue(num)
+func (mf *MedianFinder) AddNum(num int) {
+	if mf.maxHeap.Empty() {
+		mf.maxHeap.Enqueue(num)
+	} else if top, _ := mf.maxHeap.Peek(); top >= num {
+		mf.maxHeap.Enqueue(num)
 	} else {
-		this.minHeap.Enqueue(num)
+		mf.minHeap.Enqueue(num)
 	}
-	this.balanceHeaps()
+	mf.balanceHeaps()
 }
 
-func (this *MedianFinder) balanceHeaps() {
-	if this.maxHeap.Size()-this.minHeap.Size() == 2 {
-		top, _ := this.maxHeap.Dequeue()
-		this.minHeap.Enqueue(top)
-	} else if this.minHeap.Size()-this.maxHeap.Size() == 2 {
-		top, _ := this.minHeap.Dequeue()
-		this.maxHeap.Enqueue(top)
+func (mf *MedianFinder) balanceHeaps() {
+	if mf.maxHeap.Size()-mf.minHeap.Size() == 2 {
+		top, _ := mf.maxHeap.Dequeue()
+		mf.minHeap.Enqueue(top)
+	} else if mf.minHeap.Size()-mf.maxHeap.Size() == 2 {
+		top, _ := mf.minHeap.Dequeue()
+		mf.maxHeap.Enqueue(top)
 	}
 }
 
-func (this *MedianFinder) FindMedian() float64 {
-	n := this.maxHeap.Size() - this.minHeap.Size()
-	maxTop, _ := this.maxHeap.Peek()
-	minTop, _ := this.minHeap.Peek()
+func (mf *MedianFinder) FindMedian() float64 {
+	n := mf.maxHeap.Size() - mf.minHeap.Size()
+	maxTop, _ := mf.maxHeap.Peek()
+	minTop, _ := mf.minHeap.Peek()
 	if n == 0 {
 		return float64(maxTop+minTop) / 2
 	} else if n >= 1 {

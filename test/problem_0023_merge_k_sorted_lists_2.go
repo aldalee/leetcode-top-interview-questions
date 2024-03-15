@@ -2,7 +2,9 @@
 // 我的发问帖：https://stackoverflow.com/questions/78158922/why-cannot-index-priorityqueue-newwith-value-of-type-funccomparator-utils-comp
 package main
 
-import pq "github.com/emirpasic/gods/queues/priorityqueue"
+import (
+	"github.com/emirpasic/gods/v2/queues/priorityqueue"
+)
 
 type ListNode struct {
 	Val  int
@@ -10,7 +12,8 @@ type ListNode struct {
 }
 
 func mergeKLists(lists []*ListNode) *ListNode {
-	heap := pq.NewWith(func(a, b any) int {
+	// set := hashset.New[*ListNode]()
+	heap := priorityqueue.NewWith(func(a, b any) int {
 		return a.(*ListNode).Val - b.(*ListNode).Val
 	})
 	for _, list := range lists {
