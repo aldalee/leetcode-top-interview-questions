@@ -3,34 +3,16 @@
 package main
 
 func oddEvenList(head *ListNode) *ListNode {
-	if head == nil || head.Next == nil {
-		return head
+	if head == nil {
+		return nil
 	}
-	var dummy, n = &ListNode{}, 0
-	for cur := head; cur != nil; cur = cur.Next {
-		n++
-		if cur.Next == nil && n%2 == 0 {
-			cur.Next = dummy
-			break
-		}
+	odd, even, evenHead := head, head.Next, head.Next
+	for even != nil && even.Next != nil {
+		odd.Next = even.Next
+		odd = odd.Next
+		even.Next = odd.Next
+		even = even.Next
 	}
-	var pre = modifyList(head, dummy)
-	if n%2 == 0 {
-		pre.Next = dummy.Next
-	}
+	odd.Next = evenHead
 	return head
-}
-
-func modifyList(head, dummy *ListNode) (pre *ListNode) {
-	var cur, evenHead = head, head.Next
-	for next := head; next.Next != nil; {
-		next = next.Next
-		if next.Next == dummy {
-			pre = cur
-		}
-		cur.Next = next.Next
-		cur = next
-	}
-	cur.Next = evenHead
-	return pre
 }
