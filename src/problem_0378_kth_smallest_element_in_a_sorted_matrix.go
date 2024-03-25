@@ -2,30 +2,35 @@
 // 有序矩阵中第K小的元素
 package main
 
-import "github.com/emirpasic/gods/v2/queues/priorityqueue"
+import "math"
 
-type node struct {
-	val int
-	row int
-	col int
-}
-
-func kthSmallest(matrix [][]int, k int) int {
-	heap := priorityqueue.NewWith[*node](func(a, b *node) int {
-		return a.val - b.val
-	})
-	heap.Enqueue(&node{matrix[0][0], 0, 0})
-	var ans *node
-	for !heap.Empty() && k != 0 {
-		ans, _ = heap.Dequeue()
-		k--
-		row, col := ans.row, ans.col
-		if row+1 < len(matrix) && col == 0 {
-			heap.Enqueue(&node{matrix[row+1][col], row + 1, col})
+func kthSmallest(matrix [][]int, k int) (ans int) {
+	n := len(matrix)
+	noMoreNum := func(value int) (int, int) {
+		near, num := math.MinInt32, 0
+		row, col := 0, n-1
+		for row < n && col >= 0 {
+			if matrix[row][col] <= value {
+				near = max(near, matrix[row][col])
+				num += col + 1
+				row++
+			} else {
+				col--
+			}
 		}
-		if col+1 < len(matrix) {
-			heap.Enqueue(&node{matrix[row][col+1], row, col + 1})
+		return near, num
+	}
+
+	minVal, maxVal := matrix[0][0], matrix[n-1][n-1]
+	for minVal <= maxVal {
+		midVal := minVal + ((maxVal - minVal) >> 1)
+		near, cnt := noMoreNum(midVal)
+		if cnt < k {
+			minVal = midVal + 1
+		} else {
+			ans = near
+			maxVal = midVal - 1
 		}
 	}
-	return ans.val
+	return
 }
