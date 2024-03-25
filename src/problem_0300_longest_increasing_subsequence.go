@@ -6,15 +6,14 @@ import "sort"
 
 func lengthOfLIS(nums []int) int {
 	var ends []int
-	for i := 0; i < len(nums); i++ {
-		// find the first position that greater than or equal num in ends
-		idx := sort.Search(len(ends), func(j int) bool {
-			return ends[j] >= nums[i]
+	for _, num := range nums {
+		left := sort.Search(len(ends), func(i int) bool {
+			return ends[i] >= num
 		})
-		if idx == len(ends) {
-			ends = append(ends, nums[i])
+		if left == len(ends) {
+			ends = append(ends, num)
 		} else {
-			ends[idx] = nums[i]
+			ends[left] = num
 		}
 	}
 	return len(ends)
