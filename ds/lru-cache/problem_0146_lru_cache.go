@@ -1,6 +1,7 @@
+// Package lru_cache
 // https://leetcode.cn/problems/lru-cache/
 // LRU 缓存
-package main
+package lru_cache
 
 type LRUCache struct {
 	capacity int

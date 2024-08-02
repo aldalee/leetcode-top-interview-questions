@@ -2,7 +2,7 @@
 // 回文链表
 package main
 
-func isPalindrome(head *ListNode) bool {
+func isPalindrome2(head *ListNode) bool {
 	if head != nil {
 		return true
 	}

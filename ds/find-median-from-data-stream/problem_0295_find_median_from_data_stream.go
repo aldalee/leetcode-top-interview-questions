@@ -1,6 +1,7 @@
+// Package find_median_from_data_stream
 // https://leetcode.cn/problems/find-median-from-data-stream/
 // 数据流的中位数
-package main
+package find_median_from_data_stream
 
 import "github.com/emirpasic/gods/v2/queues/priorityqueue"
 

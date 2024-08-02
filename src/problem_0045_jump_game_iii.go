@@ -1,4 +1,4 @@
-//Given a 0 indexed integer array nums of length n.
+// Given a 0 indexed integer array nums of length n.
 // The initial position is start, and the target position is end.
 // and jumping is not allowed when it exceeds the limit.
 // Please return the minimum number of jumps from start to end.

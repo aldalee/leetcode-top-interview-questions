@@ -1,36 +1,32 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"testing"
 	"time"
 )
 
 func TestCancel(t *testing.T) {
-	cancelCh := make(chan struct{})
+	ctx, cancel := context.WithCancel(context.Background())
 	for i := 0; i < 5; i++ {
-		go func(i int, cancelCh chan struct{}) {
+		go func(i int, ctx context.Context) {
 			for {
-				if isCancelled(cancelCh) {
+				if isCancelled(ctx) {
 					break
 				}
 				time.Sleep(time.Millisecond * 5)
 			}
 			fmt.Println(i, "Done")
-		}(i, cancelCh)
+		}(i, ctx)
 	}
-	cancel(cancelCh)
+	cancel()
 	time.Sleep(time.Second * 1)
 }
 
-func cancel(cancelCh chan struct{}) {
-	// cancelCh <- struct{}{}
-	close(cancelCh)
-}
-
-func isCancelled(cancelCh chan struct{}) bool {
+func isCancelled(ctx context.Context) bool {
 	select {
-	case <-cancelCh:
+	case <-ctx.Done():
 		return true
 	default:
 		return false

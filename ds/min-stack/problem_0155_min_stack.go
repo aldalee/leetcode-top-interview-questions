@@ -1,6 +1,7 @@
+// Package min_stack
 // https://leetcode.cn/problems/min-stack
 // 最小栈
-package main
+package min_stack
 
 import "math"
 

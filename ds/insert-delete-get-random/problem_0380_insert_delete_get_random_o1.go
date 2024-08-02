@@ -1,6 +1,7 @@
+// Package insert_delete_get_random
 // https://leetcode.cn/problems/insert-delete-getrandom-o1/
 // O(1) 时间插入、删除和获取随机元素
-package main
+package insert_delete_get_random
 
 import "math/rand/v2"
 

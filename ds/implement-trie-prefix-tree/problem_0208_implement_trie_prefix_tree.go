@@ -1,6 +1,7 @@
+// Package implement_trie_prefix_tree
 // https://leetcode.cn/problems/implement-trie-prefix-tree/
 // 实现Trie树（前缀树）
-package main
+package implement_trie_prefix_tree
 
 type Trie struct {
 	nexts [26]*Trie

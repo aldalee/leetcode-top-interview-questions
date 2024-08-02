@@ -3,8 +3,7 @@
 package main
 
 import (
-	"math/rand"
-	"time"
+	"math/rand/v2"
 )
 
 func findKthLargest(nums []int, k int) int {
@@ -16,9 +15,8 @@ func quickSelect(arr []int, l, r, idx int) int {
 	if l == r {
 		return arr[l]
 	}
-	rand.New(rand.NewSource(time.Now().UnixNano()))
-	pivot := arr[l+rand.Intn(r-l+1)]
-	L, R := partition(arr, l, r, pivot)
+	pivot := arr[l+rand.IntN(r-l+1)]
+	L, R := partitions(arr, l, r, pivot)
 	if idx < L {
 		return quickSelect(arr, l, L-1, idx)
 	} else if idx > R {
@@ -28,7 +26,7 @@ func quickSelect(arr []int, l, r, idx int) int {
 	}
 }
 
-func partition(arr []int, l, r, pivot int) (int, int) {
+func partitions(arr []int, l, r, pivot int) (int, int) {
 	less, more, cur := l-1, r+1, l
 	for cur < more {
 		if arr[cur] < pivot {
@@ -44,3 +42,5 @@ func partition(arr []int, l, r, pivot int) (int, int) {
 	}
 	return less + 1, more - 1
 }
+
+// TODO: bfprt

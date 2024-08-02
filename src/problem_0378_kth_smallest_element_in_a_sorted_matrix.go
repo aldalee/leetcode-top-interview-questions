@@ -4,7 +4,7 @@ package main
 
 import "math"
 
-func kthSmallest(matrix [][]int, k int) (ans int) {
+func kthSmallest2(matrix [][]int, k int) (ans int) {
 	n := len(matrix)
 	noMoreNum := func(value int) (int, int) {
 		near, num := math.MinInt32, 0

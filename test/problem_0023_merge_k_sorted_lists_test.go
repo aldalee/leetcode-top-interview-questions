@@ -12,7 +12,6 @@ type ListNode struct {
 }
 
 func mergeKLists(lists []*ListNode) *ListNode {
-	// set := hashset.New[*ListNode]()
 	heap := priorityqueue.NewWith(func(a, b any) int {
 		return a.(*ListNode).Val - b.(*ListNode).Val
 	})
